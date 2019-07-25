@@ -1,0 +1,26 @@
+PODS:
+  - IQKeyboardManagerSwift (6.2.0)
+  - JVFloatLabeledTextField (1.2.1)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - JVFloatLabeledTextField
+  - SQLite.swift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - IQKeyboardManagerSwift
+    - JVFloatLabeledTextField
+    - SQLite.swift
+
+SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+
+PODFILE CHECKSUM: b10566b08ba8805968cec6b4f0138f30e479dc6e
+
+COCOAPODS: 1.5.3
