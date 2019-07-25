@@ -82,7 +82,7 @@ class DBManager: NSObject {
     
     
     
-    //MARK: UPDATE TABLE
+    //MARK: UPDATE PRODUCT TABLE
     func updateProductTable(pId: Int, productName: String)-> Bool {
         let product = self.productTable.filter(self.pId == pId)
         let updateProductTable = product.update(self.productName <- productName)
@@ -241,6 +241,21 @@ class DBManager: NSObject {
             print("Failed on Retrive: \(error)")
         }
         return array
+    }
+    
+    //MARK: UPDATE CATEGORY TABLE
+    func updateCategoryTable(cId: Int, categoryName: String)-> Bool {
+        let category = self.categoryTable.filter(self.cId == cId)
+        let updateCategoryTable = category.update(self.categoryName <- categoryName)
+        do {
+            try self.database.run(updateCategoryTable)
+            print("Records Updated")
+            return true
+        }
+        catch {
+            print("error while updating local table: \(error)")
+            return false
+        }
     }
     
     //MARK: FILTER AND FETCH ALL RECORDS FROM LOCAL DB

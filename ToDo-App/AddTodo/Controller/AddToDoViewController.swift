@@ -24,9 +24,10 @@ class AddToDoViewController: UIViewController {
     var dbDelegate: DBDelegate?
     var todoString = ""
     var pId = 0
+    var cId = 0
     var cellAction: CellAction = .add
     var vcType: VCType = .none
-    var cId = 0
+    
     
     
     override func viewDidLoad() {
@@ -52,7 +53,7 @@ class AddToDoViewController: UIViewController {
         }
         else {
             if vcType == .category {
-                
+                if cellAction == .add {
                     let check = DBManager.shared.saveToCategoryTable(categoryName: itemNameTextField.text!)
                     if check {
                         dbDelegate?.checkStatus(success: true)
@@ -61,6 +62,18 @@ class AddToDoViewController: UIViewController {
                     else {
                         print("Failed To Add")
                     }
+                }
+                else {
+                    let check = DBManager.shared.updateCategoryTable(cId: cId, categoryName: itemNameTextField.text!)
+                    if check {
+                        dbDelegate?.checkStatus(success: true)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    else {
+                        print("Failed To Update")
+                        
+                    }
+                }
             }
             else if vcType == .product {
                 if cellAction == .add {

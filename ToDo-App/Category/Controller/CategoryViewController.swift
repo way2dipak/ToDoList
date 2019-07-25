@@ -72,6 +72,17 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         
+        let update = UITableViewRowAction(style: .normal, title: "Update") { action, index in
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: AddToDoViewController.identifier) as! AddToDoViewController
+            vc.dbDelegate = self
+            vc.vcType = .category
+            vc.cellAction = .update
+            vc.cId = self.dataSource[index.row].id
+            vc.todoString = self.dataSource[index.row].itemName
+            self.present(vc, animated: true, completion: nil)
+        }
+        update.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             let check = DBManager.shared.DeleteRecordsFromCategoryTable(cId: self.dataSource[index.row].id)
             if check {
@@ -90,7 +101,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         }
         delete.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         
-        return [delete]
+        return [delete, update]
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
